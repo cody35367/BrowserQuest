@@ -712,7 +712,7 @@ function(Camera, Item, Character, Player, Timer) {
                 // We retrieve via XHR three base64 images which compose the player image (current armor, current weapon, shadow).
                 // These three base64 images are then rendered onto a canvas, which can then be converted to a data URL because it's not tainted.
                 
-                var imgCounter = 3, spriteImage, weaponImage, shadowImage, basePath = 'http://cdn.mozilla.net/browserquest/img/',
+                var imgCounter = 3, spriteImage, weaponImage, shadowImage, basePath = 'img/',
                     tryDrawing = function() {
                         imgCounter -= 1;
                         if(imgCounter == 0) {

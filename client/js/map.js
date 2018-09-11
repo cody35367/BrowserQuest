@@ -27,7 +27,7 @@ define(['jquery', 'area'], function($, Area) {
 
         _loadMap: function(useWorker) {
         	var self = this,
-        	    filepath = "http://cdn.mozilla.net/browserquest/maps/world_client.json";
+        	    filepath = "maps/world_client.json";
         	
         	if(useWorker) {
         	    log.info("Loading map with web worker.");
@@ -55,7 +55,7 @@ define(['jquery', 'area'], function($, Area) {
         },
         
         _initTilesets: function() {
-            var tileset1, tileset2, tileset3, CDN = "http://cdn.mozilla.net/browserquest/";
+            var tileset1, tileset2, tileset3, CDN = "";
             
             if(!this.loadMultiTilesheets) {
                 this.tilesetCount = 1;

@@ -1,5 +1,5 @@
 
-importScripts('http://cdn.mozilla.net/browserquest/maps/world_client.js', 'lib/underscore.min.js');
+importScripts('../maps/world_client.js', 'lib/underscore.min.js');
 
 onmessage = function (event) {
     generateCollisionGrid();
