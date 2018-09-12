@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to generate an optimized client build of BrowserQuest
-
+cd "$(dirname "$0")"
 BUILDDIR="../client-build"
 PROJECTDIR="../client/js"
 CURDIR=$(pwd)
