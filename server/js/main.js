@@ -4,11 +4,11 @@ var fs = require('fs'),
 
 
 function main(config) {
-    var WebSocket = require("ws"),
+    var ws = require("./ws"),
         WorldServer = require("./worldserver"),
         Log = require('log'),
         _ = require('underscore'),
-        server = new WebSocket.Server({ port: config.port }),
+        server = new ws.MultiVersionWebsocketServer(config.port),
         metrics = config.metrics_enabled ? new Metrics(config) : null;
         worlds = [],
         lastTotalPlayers = 0,
@@ -36,7 +36,7 @@ function main(config) {
     
     log.info("Starting BrowserQuest game server...");
     
-    server.on('connection', function(connection) {
+    server.onConnect(function(connection) {
         var world, // the one in which the player will be spawned
             connect = function() {
                 if(world) {
@@ -61,7 +61,7 @@ function main(config) {
         }
     });
 
-    server.on('error', function() {
+    server.onError(function() {
         log.error(Array.prototype.join.call(arguments, ", "));
     });
     
@@ -84,10 +84,9 @@ function main(config) {
         }
     });
     
-    //TODO: Implement /status call
-    //server.onRequestStatus(function() {
-    //    return JSON.stringify(getWorldDistribution(worlds));
-    //});
+    server.onRequestStatus(function() {
+        return JSON.stringify(getWorldDistribution(worlds));
+    });
     
     if(config.metrics_enabled) {
         metrics.ready(function() {
