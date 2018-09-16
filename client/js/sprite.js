@@ -60,7 +60,9 @@ define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
     	    canvas.width = width;
     	    canvas.height = height;
     	    ctx.drawImage(this.image, 0, 0, width, height);
-    	    
+
+            //log.debug("createHurtSprite: Trying to get image data for "+this.name);
+
     	    try {
         	    spriteData = ctx.getImageData(0, 0, width, height);
 
@@ -82,8 +84,9 @@ define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
             	    width: this.width,
             	    height: this.height
             	};
+                //log.debug("createHurtSprite: Successfully got image data for "+this.name);
     	    } catch(e) {
-    	        log.error("Error getting image data for sprite : "+this.name);
+                log.error("Error getting image data for sprite : "+this.name+" "+this.image.src);
     	    }
         },
 	
